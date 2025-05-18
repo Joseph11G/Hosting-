@@ -1,0 +1,15 @@
+{
+  "name": "whatsapp-bot-hosting",
+  "version": "1.0.0",
+  "description": "Simple WhatsApp Bot Hosting Panel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "unzipper": "^0.10.11"
+  }
+}
