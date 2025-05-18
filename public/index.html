@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bot Hosting Panel</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+        button, input { margin: 10px; padding: 10px; }
+        pre { background: #222; color: #0f0; padding: 15px; max-height: 400px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h2>WhatsApp Bot Hosting Panel</h2>
+    <form id="uploadForm">
+        <input type="file" name="zip" required />
+        <button type="submit">Upload & Start Bot</button>
+    </form>
+    <button onclick="restartBot()">Restart Bot</button>
+    <button onclick="stopBot()">Stop Bot</button>
+    <button onclick="getLogs()">View Logs</button>
+    <pre id="logs">Logs will appear here...</pre>
+    <script>
+        const form = document.getElementById('uploadForm');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const res = await fetch('/upload', { method: 'POST', body: formData });
+            alert(await res.text());
+        };
+
+        async function restartBot() {
+            const res = await fetch('/restart', { method: 'POST' });
+            alert(await res.text());
+        }
+
+        async function stopBot() {
+            const res = await fetch('/stop', { method: 'POST' });
+            alert(await res.text());
+        }
+
+        async function getLogs() {
+            const res = await fetch('/logs');
+            const text = await res.text();
+            document.getElementById('logs').innerText = text;
+        }
+    </script>
+</body>
+  </html>
